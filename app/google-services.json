@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "397245812130",
+    "project_id": "findaseatmain-bf568",
+    "storage_bucket": "findaseatmain-bf568.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397245812130:android:0b67ca8e9c973f4a0776fb",
+        "android_client_info": {
+          "package_name": "com.example.findaseat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSzLdDVun0VpKVUJN1z7Bp89RnrH_aTOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
