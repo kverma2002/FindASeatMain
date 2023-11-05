@@ -6,16 +6,19 @@
     tools:context=".ProfileFragment"
     android:background="@color/uscred">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rel"
-        android:background="@color/uscred">
+        android:background="@color/uscyellow"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/profile_pic"
             android:layout_width="135dp"
-            android:layout_height="135dp"
-            android:layout_margin="140dp">
+            android:layout_height="135dp">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -26,11 +29,18 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="90dp"
-            android:layout_marginTop = "200dp"
             android:gravity="center"
-            android:text="Tommy Trojan"
+            android:padding="10dp"
             android:textSize="35sp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/em"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -38,12 +48,9 @@
             android:id="@+id/uscid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:drawableLeft="@drawable/ic_baseline_perm_identity_24"
-            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_baseline_perm_identity_24"
             android:gravity="center"
-            android:padding="60dp"
-            android:text="USC ID: 0123456789"
+            android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="25sp"/>
 
@@ -51,28 +58,17 @@
             android:id="@+id/affiliation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="350dp"
-            android:drawableLeft="@drawable/ic_baseline_school_24"
-            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_baseline_school_24"
             android:gravity="center"
-            android:padding="60dp"
-            android:text="Affiliation: Undergrad"
             android:textColor="@color/black"
-            android:textSize="25sp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="205dp"
-            android:background="#30ffffff"
-            android:padding="190dp" />
+            android:textSize="25sp"
+            android:padding="10dp"/>
 
 
         <TextView
             android:id="@+id/reserveHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/affiliation"
             android:padding="10dp"
             android:gravity="center"
             android:text="Reservation History"
@@ -82,7 +78,7 @@
 
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </FrameLayout>

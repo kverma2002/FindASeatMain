@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,22 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.findaseat.Utils.FirestoreCallback;
+import com.example.findaseat.Utils.MyFirestoreCallback;
 import com.example.findaseat.Utils.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -59,8 +67,6 @@ public class LogInFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
 
-        User user = (User) getActivity().getApplicationContext();
-
         progressBar = view.findViewById(R.id.progress);
         emailInput = view.findViewById(R.id.email);
         mAuth = FirebaseAuth.getInstance();
@@ -88,43 +94,21 @@ public class LogInFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(getActivity(), "Success.", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user1 = mAuth.getCurrentUser();
+                                    MyFirestoreCallback callback = new MyFirestoreCallback() {
+                                        @Override
+                                        public void onFirestoreQueryComplete() {
+                                            // This code will execute after the Firestore query is complete
+                                            // You can proceed to the next step here, e.g., navigating to the next fragment
+                                            progressBar.setVisibility(View.GONE);
+                                            // Sign in success, update UI with the signed-in user's information
+                                            Toast.makeText(getActivity(), "Success.", Toast.LENGTH_SHORT).show();
+                                            replaceFragment(new ProfileFragment());
+                                        }
+                                    };
 
-                                    db.collection("users")
-                                            .whereEqualTo("email", email)
-                                            .get()
-                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                                    if (task.isSuccessful()) {
-                                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                                            if (document.contains("first") &&
-                                                                    document.contains("last") &&
-                                                                    document.contains("email") &&
-                                                                    document.contains("affiliation") &&
-                                                                    document.contains("uscID")) {
-
-                                                                user.setFirst(document.getString("first"));
-                                                                user.setLast(document.getString("last"));
-                                                                user.setEmail(document.getString("email"));
-                                                                user.setUscID(document.getString("uscID"));
-                                                                user.setAffiliation(document.getString("affiliation"));
-                                                                user.setLoggedIn(true);
-                                                            } else {
-                                                                System.err.println("Document does not contain the 'email' field.");
-                                                            }
-                                                        }
-                                                    } else {
-
-                                                    }
-                                                }
-                                            });
-
-
-                                    replaceFragment(new ProfileFragment());
+                                    fetchDataFromFirestore(callback, email, db);
+//                                    replaceFragment(new ProfileFragment());
                                 } else {
                                     progressBar.setVisibility(View.GONE);
                                     // If sign in fails, display a message to the user.
@@ -152,4 +136,41 @@ public class LogInFragment extends Fragment {
         fragmentTransaction.addToBackStack(null); // Add to back stack for back navigation
         fragmentTransaction.commit();
     }
+
+    private void fetchDataFromFirestore(final FirestoreCallback callback, String email,FirebaseFirestore db) {
+        User user = (User) getActivity().getApplicationContext();
+        db.collection("users")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.contains("first") &&
+                                        document.contains("last") &&
+                                        document.contains("email") &&
+                                        document.contains("affiliation") &&
+                                        document.contains("uscID")) {
+
+                                    user.setFirst(document.getString("first"));
+                                    user.setLast(document.getString("last"));
+                                    user.setEmail(document.getString("email"));
+                                    user.setUscID(document.getString("uscID"));
+                                    user.setAffiliation(document.getString("affiliation"));
+                                    user.setLoggedIn(true);
+                                } else {
+                                    System.err.println("Document does not contain the 'email' field.");
+                                }
+                            }
+                        } else {
+                            // Handle the case where the query is not successful
+                        }
+
+                        // Call the callback when the query is complete
+                        callback.onFirestoreQueryComplete();
+                    }
+                });
+    }
+
 }
