@@ -25,6 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class LogInFragment extends Fragment {
@@ -41,6 +43,7 @@ public class LogInFragment extends Fragment {
     FirebaseFirestore db;
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +57,9 @@ public class LogInFragment extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_log_in, container, false);
 
+        db = FirebaseFirestore.getInstance();
 
+        User user = (User) getActivity().getApplicationContext();
 
         progressBar = view.findViewById(R.id.progress);
         emailInput = view.findViewById(R.id.email);
@@ -86,7 +91,39 @@ public class LogInFragment extends Fragment {
                                     progressBar.setVisibility(View.GONE);
                                     // Sign in success, update UI with the signed-in user's information
                                     Toast.makeText(getActivity(), "Success.", Toast.LENGTH_SHORT).show();
-                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    FirebaseUser user1 = mAuth.getCurrentUser();
+
+                                    db.collection("users")
+                                            .whereEqualTo("email", email)
+                                            .get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                                            if (document.contains("first") &&
+                                                                    document.contains("last") &&
+                                                                    document.contains("email") &&
+                                                                    document.contains("affiliation") &&
+                                                                    document.contains("uscID")) {
+
+                                                                user.setFirst(document.getString("first"));
+                                                                user.setLast(document.getString("last"));
+                                                                user.setEmail(document.getString("email"));
+                                                                user.setUscID(document.getString("uscID"));
+                                                                user.setAffiliation(document.getString("affiliation"));
+                                                                user.setLoggedIn(true);
+                                                            } else {
+                                                                System.err.println("Document does not contain the 'email' field.");
+                                                            }
+                                                        }
+                                                    } else {
+
+                                                    }
+                                                }
+                                            });
+
+
                                     replaceFragment(new ProfileFragment());
                                 } else {
                                     progressBar.setVisibility(View.GONE);

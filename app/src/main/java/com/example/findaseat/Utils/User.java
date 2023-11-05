@@ -1,90 +1,87 @@
 package com.example.findaseat.Utils;
 
+import android.app.Application;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-public class User {
+public class User extends Application {
 
-    private int userID;
-    private String password;
-    private int affiliation;
+    private String first;
+    private String last;
+    private String email;
+
+    private String uscID;
+    private String affiliation;
     // https://stackoverflow.com/questions/19285556/how-to-store-an-image-in-a-variable-in-java-android-development
-    private Bitmap image;
-    private ImageView profilePicture;
-    private ArrayList<Reservation> seatHistory;
 
-    private Boolean loggedIn;
+    private Boolean loggedIn = false;
 
-    public User(int userID, String password, int affiliation, Bitmap image, ImageView profilePicture, ArrayList<Reservation> seatHistory) {
-        this.userID = userID;
-        this.password = password;
+    public User(String first, String last, String email, String uscID, String affiliation, Boolean loggedIn) {
+        this.first = first;
+        this.last = last;
+        this.email = email;
+        this.uscID = uscID;
         this.affiliation = affiliation;
-        this.image = image;
-        this.profilePicture = profilePicture;
-        this.seatHistory = seatHistory;
-        this.loggedIn = true;
+        this.loggedIn = loggedIn;
     }
+
     public User() {
-        this.userID = 0;
-        this.password = "password";
-        this.affiliation = 0;
-        this.image = null;
-        this.profilePicture = null;
-        this.seatHistory = null;
+        this.first = "";
+        this.last = "";
+        this.email = "";
+        this.uscID = "";
+        this.affiliation = "";
         this.loggedIn = false;
     }
 
-    public int getUserID() {
-        return userID;
+
+    public String getFirst() {
+        return first;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setFirst(String first) {
+        this.first = first;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLast() {
+        return last;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLast(String last) {
+        this.last = last;
     }
 
-    public int getAffiliation() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUscID() {
+        return uscID;
+    }
+
+    public void setUscID(String uscID) {
+        this.uscID = uscID;
+    }
+
+    public String getAffiliation() {
         return affiliation;
     }
 
-    public void setAffiliation(int affiliation) {
+    public void setAffiliation(String affiliation) {
         this.affiliation = affiliation;
     }
 
-    public Bitmap getImage() {
-        return image;
+    public Boolean getLoggedIn() {
+        return loggedIn;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setLoggedIn(Boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
-
-    public ImageView getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(ImageView profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
-    public ArrayList<Reservation> getSeatHistory() {
-        return seatHistory;
-    }
-
-    public void setSeatHistory(ArrayList<Reservation> seatHistory) {
-        this.seatHistory = seatHistory;
-    }
-
-    public boolean isLoggedIn() {return loggedIn; }
-
-
 }

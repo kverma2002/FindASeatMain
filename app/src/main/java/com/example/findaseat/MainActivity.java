@@ -23,7 +23,7 @@ public class  MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
-    User user = new User();
+
 
 
     @Override
@@ -31,6 +31,8 @@ public class  MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        User user = (User) getApplicationContext();
 
         replaceFragment(new MapFragment());
         binding.bottomNavigationView.setBackground(null);
@@ -41,7 +43,7 @@ public class  MainActivity extends AppCompatActivity {
             if (page == R.id.map) {
                 replaceFragment(new MapFragment());
             } else if (page == R.id.profile) {
-                if (user.isLoggedIn()) {
+                if (user.getLoggedIn()) {
                     replaceFragment(new ProfileFragment());
                 }
                 else {
