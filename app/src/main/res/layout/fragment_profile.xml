@@ -6,89 +6,83 @@
     tools:context=".ProfileFragment"
     android:background="@color/uscred">
 
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/rel"-->
-<!--        android:background="@color/uscred">-->
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:id="@+id/profile_pic"-->
-<!--            android:layout_width="135dp"-->
-<!--            android:layout_height="135dp"-->
-<!--            android:layout_margin="140dp"-->
-<!--            app:cardCornerRadius="100dp">-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rel"
+        android:background="@color/uscred">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profile_pic"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:layout_margin="140dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/usc_trojan"/>
+        </androidx.cardview.widget.CardView>
 
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:background="@drawable/usc_trojan"/>-->
-<!--        </androidx.cardview.widget.CardView>-->
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="90dp"
+            android:layout_marginTop = "200dp"
+            android:gravity="center"
+            android:text="Tommy Trojan"
+            android:textSize="35sp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/name"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="90dp"-->
-<!--            android:layout_marginTop = "200dp"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Tommy Trojan"-->
-<!--            android:textSize="35sp"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textStyle="bold"-->
-<!--            />-->
+        <TextView
+            android:id="@+id/uscid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:drawableLeft="@drawable/ic_baseline_perm_identity_24"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:padding="60dp"
+            android:text="USC ID: 0123456789"
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
 
-<!--        <TextView-->
-<!--            android:id="@+id/uscid"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="300dp"-->
-<!--            android:drawableLeft="@drawable/ic_baseline_perm_identity_24"-->
-<!--            android:drawablePadding="10dp"-->
-<!--            android:gravity="center"-->
-<!--            android:padding="60dp"-->
-<!--            android:text="USC ID: 0123456789"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="25sp"/>-->
+        <TextView
+            android:id="@+id/affiliation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="350dp"
+            android:drawableLeft="@drawable/ic_baseline_school_24"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:padding="60dp"
+            android:text="Affiliation: Undergrad"
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
 
-<!--        <TextView-->
-<!--            android:id="@+id/affiliation"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="350dp"-->
-<!--            android:drawableLeft="@drawable/ic_baseline_school_24"-->
-<!--            android:drawablePadding="10dp"-->
-<!--            android:gravity="center"-->
-<!--            android:padding="60dp"-->
-<!--            android:text="Affiliation: Undergrad"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="25sp"/>-->
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="205dp"-->
-<!--            android:background="#30ffffff"-->
-<!--            android:padding="190dp" />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="205dp"
+            android:background="#30ffffff"
+            android:padding="190dp" />
 
 
-<!--        <TextView-->
-<!--            android:id="@+id/reserveHistory"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/affiliation"-->
-<!--            android:padding="10dp"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Reservation History"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="27sp"-->
-<!--            android:textStyle="bold"-->
-
-
-<!--            />-->
+        <TextView
+            android:id="@+id/reserveHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/affiliation"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="Reservation History"
+            android:textColor="@color/black"
+            android:textSize="27sp"
+            android:textStyle="bold" />
 
 
 
-<!--    </RelativeLayout>-->
+    </RelativeLayout>
 
 
 </FrameLayout>

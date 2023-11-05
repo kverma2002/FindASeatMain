@@ -17,12 +17,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RegisterFragment extends Fragment {
@@ -32,6 +39,7 @@ public class RegisterFragment extends Fragment {
     FirebaseAuth mAuth;
 
     ProgressBar progressBar;
+    FirebaseFirestore db;
 
 
     @Override
@@ -45,6 +53,8 @@ public class RegisterFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_register, container, false);
         mAuth = FirebaseAuth.getInstance();
         progressBar = view.findViewById(R.id.progressR);
+
+        db = FirebaseFirestore.getInstance();
 
         back = (MaterialButton) view.findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -81,16 +91,39 @@ public class RegisterFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please Fillout All Fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                Map<String, Object> user = new HashMap<>();
+                user.put("first", fName);
+                user.put("last", lName);
+                user.put("email", email);
+                user.put("uscID", uscID);
+                user.put("affiliation", affiliation);
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     progressBar.setVisibility(View.GONE);
+                                    db.collection("users")
+                                            .add(user)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Toast.makeText(getActivity(), "Account Created.", Toast.LENGTH_SHORT).show();
+                                                    replaceFragment(new LogInFragment());
+                                                }
+
+
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_SHORT).show();
+
+                                                }
+                                            });
+
                                     // Sign in success, update UI with the signed-in user's information
 //                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(getActivity(), "Account Created.", Toast.LENGTH_SHORT).show();
-
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_SHORT).show();

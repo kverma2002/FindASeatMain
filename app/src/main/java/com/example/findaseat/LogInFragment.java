@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.findaseat.Utils.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class LogInFragment extends Fragment {
@@ -30,10 +32,14 @@ public class LogInFragment extends Fragment {
     TextInputEditText emailInput, passwordInput;
     MaterialButton login;
 
+    User user;
+
     private DatabaseReference mDatabase;
     FirebaseAuth mAuth;
 
     ProgressBar progressBar;
+    FirebaseFirestore db;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,8 @@ public class LogInFragment extends Fragment {
 //        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         View view=inflater.inflate(R.layout.fragment_log_in, container, false);
+
+
 
         progressBar = view.findViewById(R.id.progress);
         emailInput = view.findViewById(R.id.email);
