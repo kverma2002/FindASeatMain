@@ -30,7 +30,6 @@ public class ReserveHistoryFragment extends Fragment {
         tableLayout = view.findViewById(R.id.table);
         db = FirebaseFirestore.getInstance();
 
-        // Replace "userEmail" with the user's actual email
 
         User user = (User) getActivity().getApplicationContext();
         String userEmail = user.getEmail();
@@ -74,7 +73,6 @@ public class ReserveHistoryFragment extends Fragment {
             TextView startTimeTextView = new TextView(requireContext());
             startTimeTextView.setText(endTime);
 
-            // Add more TextViews for other columns
 
             // Add TextViews to the TableRow
             row.addView(buildingTextView);
