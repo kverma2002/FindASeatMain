@@ -86,7 +86,6 @@
             android:text="Create New Account"
             android:backgroundTint="@color/black"
             android:textColor="@color/white"
-            android:layout_below="@id/forgetPassword"
             android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
             />
