@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProfileFragment"
     android:background="@color/uscred">
 
@@ -18,12 +19,16 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/profile_pic"
             android:layout_width="135dp"
-            android:layout_height="135dp">
+            android:layout_height="135dp"
+            app:cardCornerRadius="100dp">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/usc_trojan"/>
+                android:background="@drawable/usc_trojan"
+                />
         </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/name"
@@ -51,6 +56,8 @@
             android:drawableStart="@drawable/ic_baseline_perm_identity_24"
             android:gravity="center"
             android:padding="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:textColor="@color/black"
             android:textSize="25sp"/>
 
@@ -60,6 +67,8 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_baseline_school_24"
             android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:padding="10dp"/>
@@ -72,6 +81,7 @@
             android:padding="10dp"
             android:gravity="center"
             android:text="Reservation History"
+            android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:textSize="27sp"
             android:textStyle="bold" />

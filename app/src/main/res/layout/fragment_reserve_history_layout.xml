@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ReserveHistoryFragment">
-    <TableLayout android:layout_width="match_parent"
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft = "10dp"
         android:layout_marginRight = "10dp"
@@ -134,7 +136,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/past_info1"
+            android:id="@+id/past_info"
             android:padding="5dp"
             android:orientation="vertical"
             android:background="#EFF3F9">
@@ -154,205 +156,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Time1 "/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info2"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B2 "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time "/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info3"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B3 "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info4"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B4 "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time "/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info5"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B5 "
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info6"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B6"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info7"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B7"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info8"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B8"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info9"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B9"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/past_info10"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:background="#EFF3F9">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B10"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time"/>
         </TableRow>
 
     </TableLayout>
