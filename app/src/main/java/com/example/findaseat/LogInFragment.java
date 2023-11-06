@@ -113,6 +113,7 @@ public class LogInFragment extends Fragment {
                                     progressBar.setVisibility(View.GONE);
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_SHORT).show();
+                                    replaceFragment(new LogInFragment());
                                 }
                             }
                         });
