@@ -64,7 +64,11 @@ public class ReserveFragment extends Fragment {
     private Button reserveButton;
     private Button cancelButton;
 
-    private FirebaseFirestore db;
+    private TextView building_name;
+
+    private TextView building_info;
+
+    FirebaseFirestore db;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -74,6 +78,8 @@ public class ReserveFragment extends Fragment {
         seats = new ArrayList<>();
         indoor = new ArrayList<>();
         outdoor = new ArrayList<>();
+
+
 
 //functions to be implemented:
         //1. when loading this page, check if user has active reservation
@@ -111,7 +117,8 @@ public class ReserveFragment extends Fragment {
         reserveButton = view.findViewById(R.id.reserveButton);
         cancelButton = view.findViewById(R.id.clearSelection);
         cancelButton.setEnabled(false);
-
+        building_name= view.findViewById(R.id.buildingName);
+        building_info = view.findViewById(R.id.buildingInfo);
         TextView reminder = view.findViewById(R.id.reminder);
         if(currentReserve != null){
             reserveButton.setEnabled(false);
@@ -168,7 +175,7 @@ public class ReserveFragment extends Fragment {
             updateTableDate(view,currentDay);
         });
 
-        ;
+
         db.collection("buildings").document("Doheny")
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -179,7 +186,8 @@ public class ReserveFragment extends Fragment {
                         buildingName = buildingDocument.getString("name");
                         openTime = buildingDocument.getLong("open").intValue();
                         closeTime = buildingDocument.getLong("close").intValue();
-
+                        building_name.setText(buildingName);
+                        building_info.setText("Opentime: " + IntToTime(openTime) + " to " + IntToTime(closeTime));
                     } else {
                         System.err.println("Building does not exist");
                     }
@@ -198,6 +206,7 @@ public class ReserveFragment extends Fragment {
                         int seatId = seatDocument.getLong("id").intValue();
                         String room = seatDocument.getString("room");
                         boolean isInside = seatDocument.getBoolean("inside");
+                        Log.d("seat", seatId + " " + room + " " + isInside);
                         if(isInside){
                             indoor.add(seatId);
                         }else{
@@ -211,7 +220,8 @@ public class ReserveFragment extends Fragment {
                 }
             }
         });
-
+        Seat testseat = new Seat(1,true,true,"abc");
+        seats.add(testseat);
         //setting up the table
         for (int i = 0; i <= seats.size(); i++) {
             TableRow row = new TableRow(view.getContext());
