@@ -9,4 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="uscred">#990000</color>
     <color name="uscyellow">#FFCC00</color>
+    <color name="green">#90EE90</color>
+    <color name="darkgreen">#3CB371</color>
+    <color name="dark_orange">#FF8C00</color>
+    <color name="orange">#FFA500</color>
+    <color name="light_orange">#FFDAB9</color>
 </resources>

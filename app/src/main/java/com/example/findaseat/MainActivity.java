@@ -34,7 +34,7 @@ public class  MainActivity extends AppCompatActivity {
 
         User user = (User) getApplicationContext();
 
-        replaceFragment(new MapFragment());
+        replaceFragment(new ReserveFragment());
         binding.bottomNavigationView.setBackground(null);
 
         binding.bottomNavigationView.setOnItemSelectedListener( item -> {

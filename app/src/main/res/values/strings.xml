@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">FindASeat</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reserve">Reserve</string>
+    <string name="nextbutton">Next</string>
+    <string name="previousbutton">Previous</string>
+    <string name="clear">Clear</string>
 </resources>

@@ -56,6 +56,7 @@ public class RegisterFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
 
+
         back = (MaterialButton) view.findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

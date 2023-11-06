@@ -2,11 +2,16 @@ package com.example.findaseat.Utils;
 
 public class Seat {
     private int seatId;
+    private boolean inside;
     private boolean isOccupied;
 
-    public Seat(int seatId, boolean isOccupied) {
+    private String room;
+
+    public Seat(int seatId, boolean inside, boolean isOccupied, String room) {
         this.seatId = seatId;
+        this.inside = inside;
         this.isOccupied = isOccupied;
+        this.room = room;
     }
 
     public int getSeatId() {
@@ -31,5 +36,21 @@ public class Seat {
 
     public void cancelSeat(int id) {
         throw new UnsupportedOperationException("Not yet Implemented");
+    }
+
+    public boolean isInside() {
+        return inside;
+    }
+
+    public void setInside(boolean inside) {
+        this.inside = inside;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
     }
 }
