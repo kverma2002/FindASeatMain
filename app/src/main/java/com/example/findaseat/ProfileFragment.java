@@ -99,9 +99,6 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-
-
-
     private void replaceFragment(Fragment newFragment) {
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -109,10 +106,5 @@ public class ProfileFragment extends Fragment {
         fragmentTransaction.addToBackStack(null); // Add to back stack for back navigation
         fragmentTransaction.commit();
     }
-
-
-
-
-
 
 }
