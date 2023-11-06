@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,15 +86,25 @@ public class ProfileFragment extends Fragment {
 
         // You can also use the view parameter to access UI elements
         // and perform other UI-related operations.
+
+        TextView history =(TextView) view.findViewById(R.id.reserveHistory);
+
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(this, ReserveHistory.class);
+                //startActivity(intent);
+                replaceFragment(new ReserveHistoryFragment());
+            }
+        });
     }
 
-
-
-
-
-
-
-
-
+    private void replaceFragment(Fragment newFragment) {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, newFragment);
+        fragmentTransaction.addToBackStack(null); // Add to back stack for back navigation
+        fragmentTransaction.commit();
+    }
 
 }
