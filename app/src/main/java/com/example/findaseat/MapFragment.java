@@ -52,7 +52,6 @@ public class MapFragment extends Fragment {
                         // replaceFragment(new ReservationFragment())
                         // Or you can start new activity
                         // And pass intent of name with marker.getTitle()
-
                         replaceFragment(new BlankFragment());
                         return false;
                     }
