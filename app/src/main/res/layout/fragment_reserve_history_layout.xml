@@ -63,30 +63,12 @@
 
         </TableRow>
 
-        <TableRow android:id="@+id/upcoming_r2"
-            android:background="#DCE5EE"
-            android:padding="5dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Building: "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Seat: "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Time: "/>
-
-        </TableRow>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/upcomingReservation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#EFF3F9"/>
 
         <TableRow
             android:id="@+id/past_r1"
@@ -109,54 +91,64 @@
             android:id="@+id/past_r2"
             android:background="#929BA6"
             android:padding="5dp"
-            android:orientation="vertical"
-            >
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:padding="5dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Date"
+                android:gravity="center"
+                android:padding="4dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="Building"
-                android:textColor="@color/white"/>
+                android:gravity="center"
+                android:padding="4dp"/>
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:padding="5dp"
-                android:text="Seat"
-                android:textColor="@color/white"/>
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Room"
+                android:gravity="center"
+                android:padding="4dp"/>
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:padding="5dp"
-                android:text="Time"
-                android:textColor="@color/white"/>
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Start"
+                android:gravity="center"
+                android:padding="4dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="End"
+                android:gravity="center"
+                android:padding="4dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:gravity="center"
+                android:padding="4dp"/>
+
 
         </TableRow>
 
-        <TableRow
-            android:id="@+id/past_info"
-            android:padding="5dp"
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pastInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#EFF3F9">
+            android:background="#EFF3F9"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="B1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Seat1 "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Time1 "/>
-        </TableRow>
 
     </TableLayout>
 

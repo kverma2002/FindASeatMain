@@ -1,16 +1,33 @@
 package com.example.findaseat.Utils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Building {
-    public String name;
-    private int id;
-    private ArrayList<Seat> seats;
+public class Building implements Serializable {
+    private long close;
+    private long open;
+    private String name;
+    private String description;
+    private String address;
 
-    public Building(String name, int id, ArrayList<Seat> seats) {
-        this.name = name;
-        this.id = id;
-        this.seats = seats;
+    public Building() {
+        // Default constructor required for Firestore.
+    }
+
+    public long getClose() {
+        return close;
+    }
+
+    public void setClose(long close) {
+        this.close = close;
+    }
+
+    public long getOpenTime() {
+        return open;
+    }
+
+    public void setOpen(long open) {
+        this.open = open;
     }
 
     public String getName() {
@@ -21,27 +38,27 @@ public class Building {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public String getDescription() {
+        return description;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public ArrayList<Seat> getSeats() {
-        return seats;
+    public String getAddress() {
+        return address;
     }
 
-    public void setSeats(ArrayList<Seat> seats) {
-        this.seats = seats;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void reserveSeat(int id) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    public String getHours() {
 
-    public void cancelSeat(int id) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String o = Time.timeMap.get(this.open);
+        String c = Time.timeMap.get(this.close);
+        return (o + " - " + c);
+
     }
 }

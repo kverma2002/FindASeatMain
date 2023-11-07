@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/item_reservation.xml -->
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/dateIdTextView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="Date"
+        android:gravity="center"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/buildingIdTextView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="Date"
+        android:gravity="center"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/roomIdTextView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="Date"
+        android:gravity="center"
+        android:padding="8dp"/>
+
+
+    <TextView
+        android:id="@+id/startTimeTextView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="Date"
+        android:gravity="center"
+        android:padding="8dp"/>
+
+
+    <TextView
+        android:id="@+id/endTimeTextView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="Date"
+        android:gravity="center"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/cancelled"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text=""
+        android:gravity="center"
+        android:padding="8dp"/>
+
+
+
+
+
+</TableRow>

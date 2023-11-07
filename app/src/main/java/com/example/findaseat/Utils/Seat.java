@@ -1,35 +1,66 @@
 package com.example.findaseat.Utils;
 
-public class Seat {
-    private int seatId;
-    private boolean isOccupied;
+import java.io.Serializable;
 
-    public Seat(int seatId, boolean isOccupied) {
-        this.seatId = seatId;
-        this.isOccupied = isOccupied;
+public class Seat implements Serializable {
+    private long id;
+
+    private String description;
+
+    private boolean inside;
+
+    private String room;
+
+    private long number;
+
+    public Seat() {
     }
 
-    public int getSeatId() {
-        return seatId;
+    public Seat(long seatId, String description, boolean inside, String room, long number) {
+        this.id = seatId;
+        this.description = description;
+        this.inside = inside;
+        this.room = room;
+        this.number = number;
     }
 
-    public void setSeatId(int seatId) {
-        this.seatId = seatId;
+    public long getSeatNumber() {
+        return number;
     }
 
-    public boolean isOccupied() {
-        return isOccupied;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOccupied(boolean occupied) {
-        isOccupied = occupied;
+    public boolean isInside() {
+        return inside;
     }
 
-    public void reserveSeat(int id) {
-        throw new UnsupportedOperationException("Not Yet Implemented");
+    public String getRoomName() {
+        return room;
     }
 
-    public void cancelSeat(int id) {
-        throw new UnsupportedOperationException("Not yet Implemented");
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setInside(boolean inside) {
+        this.inside = inside;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setNumber(long number) {
+        this.number = number;
     }
 }

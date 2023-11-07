@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.findaseat.Utils.BuildingInformation;
+import com.example.findaseat.Utils.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -40,6 +42,7 @@ public class MapFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_map, container, false);
         SupportMapFragment supportMapFragment=(SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.gmap);
+        User user = (User) getActivity().getApplicationContext();
 
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -66,8 +69,18 @@ public class MapFragment extends Fragment {
                         // replaceFragment(new ReservationFragment())
                         // Or you can start new activity
                         // And pass intent of name with marker.getTitle()
-                        replaceFragment(new BlankFragment());
+//                        if (user.getLoggedIn()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("name", marker.getTitle());
+                            BuildingFragment bf = new BuildingFragment();
+                            bf.setArguments(bundle);
+                            replaceFragment(bf);
+
+//                        } else {
+//                            Toast.makeText(getActivity(), "Log In First", Toast.LENGTH_SHORT).show();
+//                        }
                         return false;
+
                     }
                 });
                 ////        Create Bounds for USC Campus

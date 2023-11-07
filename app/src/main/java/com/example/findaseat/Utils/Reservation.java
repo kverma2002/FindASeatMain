@@ -3,69 +3,59 @@ package com.example.findaseat.Utils;
 import java.util.Date;
 
 public class Reservation {
-    private int seatID;
-    private Date startTime;
-    private Date endTime;
-    private boolean isActive;
-    private boolean isModified;
+    private String startTime;
+    private String endTime;
+    private String room;
+    private String building;
 
-    public Reservation(int seatID, Date startTime, Date endTime, boolean isActive, boolean isModified) {
-        this.seatID = seatID;
+    private String date;
+
+    private String id;
+
+    boolean cacelled;
+
+    public Reservation() {
+        // Default constructor required for Firestore
+    }
+
+    public Reservation(String startTime, String endTime, String room, String building, String date, String id, boolean cacelled) {
         this.startTime = startTime;
         this.endTime = endTime;
-        this.isActive = isActive;
-        this.isModified = isModified;
+        this.room = room;
+        this.building = building;
+        this.date = date;
+        this.id = id;
+        this.cacelled = cacelled;
     }
 
-    public int getSeatID() {
-        return seatID;
-    }
 
-    public void setSeatID(int seatID) {
-        this.seatID = seatID;
-    }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public String getRoom() {
+        return room;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public String getBuilding() {
+        return building;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public String getDate() {
+        return date;
     }
 
-    public boolean isModified() {
-        return isModified;
+    public String getId() {
+        return id;
     }
 
-    public void setModified(boolean modified) {
-        isModified = modified;
-    }
+    public boolean isCancelled() {return cacelled;}
 
-    public int getDuration() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
 
-    public void cancelReservation(int id) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
 
-    public void modifyReservation(int id) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
 }
