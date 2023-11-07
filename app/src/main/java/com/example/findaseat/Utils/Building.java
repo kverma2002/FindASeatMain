@@ -1,5 +1,7 @@
 package com.example.findaseat.Utils;
 
+import android.widget.ProgressBar;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -10,6 +12,16 @@ public class Building implements Serializable {
     private String description;
     private String address;
 
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Building() {
         // Default constructor required for Firestore.
     }
@@ -17,6 +29,8 @@ public class Building implements Serializable {
     public long getClose() {
         return close;
     }
+
+    public String closeTime() {return MilitaryTimeMapper.getMilitaryTime((int)close);}
 
     public void setClose(long close) {
         this.close = close;

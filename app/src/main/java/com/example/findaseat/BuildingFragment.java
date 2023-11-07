@@ -49,6 +49,8 @@ public class BuildingFragment extends Fragment {
 
     Building building;
 
+    String id = "";
+
 
     private MutableLiveData<Building> buildingLiveData = new MutableLiveData<>();
 
@@ -90,6 +92,7 @@ public class BuildingFragment extends Fragment {
                 hours.setText(building.getHours());
 
                 this.building = building;
+                building.setId(this.id);
                 User user = (User) getActivity().getApplicationContext();
 
                 seatRecyclerView = view.findViewById(R.id.seatRecyclerView);
@@ -142,6 +145,7 @@ public class BuildingFragment extends Fragment {
                         Building specificBuilding = documentSnapshot.toObject(Building.class);
                         long l = documentSnapshot.getLong("open");
                         specificBuilding.setOpen(l);
+                        this.id = (documentSnapshot.getId());
                         System.out.println(specificBuilding.getOpenTime());
 
                         // Update the LiveData with the retrieved building data.

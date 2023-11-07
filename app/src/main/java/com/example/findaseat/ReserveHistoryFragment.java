@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.findaseat.Utils.BoolResPair;
 import com.example.findaseat.Utils.Reservation;
 import com.example.findaseat.Utils.ReservationAdapter;
+import com.example.findaseat.Utils.ReservationAdapterUpcoming;
+import com.example.findaseat.Utils.ReservationSeatAdapter;
 import com.example.findaseat.Utils.Time;
 import com.example.findaseat.Utils.User;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -54,7 +56,7 @@ public class ReserveHistoryFragment extends Fragment {
     private List<Reservation> reservationsList;
     private ReservationAdapter adapter;
 
-    private ReservationAdapter adapterUpcoming;
+    private ReservationAdapterUpcoming adapterUpcoming;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class ReserveHistoryFragment extends Fragment {
 
         upcomingReservation = new ArrayList<>();
         recyclerViewUpcoming = view.findViewById(R.id.upcomingReservation);
-        adapterUpcoming = new ReservationAdapter(upcomingReservation);
+        adapterUpcoming = new ReservationAdapterUpcoming(upcomingReservation);
         recyclerViewUpcoming.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerViewUpcoming.setAdapter(adapterUpcoming);
 

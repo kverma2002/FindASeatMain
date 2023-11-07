@@ -10,13 +10,13 @@ public class User extends Application {
 
     private String first;
     private String last;
-    private String email = "lj@usc.edu";
+    private String email = "";
 
     private String uscID;
     private String affiliation;
     // https://stackoverflow.com/questions/19285556/how-to-store-an-image-in-a-variable-in-java-android-development
 
-    private Boolean loggedIn = true;
+    private Boolean loggedIn = false;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,10 +38,10 @@ public class User extends Application {
     public User() {
         this.first = "";
         this.last = "";
-        this.email = "lj@usc.edu";
+        this.email = "";
         this.uscID = "";
         this.affiliation = "";
-        this.loggedIn = true;
+        this.loggedIn = false;
     }
 
 

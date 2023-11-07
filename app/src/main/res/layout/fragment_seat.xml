@@ -9,24 +9,31 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:padding="16dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buildingSeat"/>
+            android:id="@+id/buildingSeat"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="22sp"
             android:id="@+id/roomSeat"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/seatNumberSeat"/>
+            android:id="@+id/seatNumberSeat"
+            android:textSize="22sp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/descriptionSeat"/>
+            android:id="@+id/descriptionSeat"
+            android:textSize="20sp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,7 +46,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:popupBackground="@drawable/spinner_popup_bg"/>
 
             <Spinner
                 android:id="@+id/durationSpinner"
@@ -57,6 +65,13 @@
                 android:gravity="center"/>
 
         </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress"
+            android:visibility="gone"
+            android:layout_gravity="center"/>
 
         <TableRow
             android:id="@+id/past_r1"
@@ -129,7 +144,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/currentReservation"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="400dp"
             android:orientation="vertical"
             android:background="#EFF3F9"/>
 

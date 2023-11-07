@@ -7,4 +7,11 @@ public class MyFirestoreCallback implements FirestoreCallback {
         // You can implement the logic you want here.
         System.out.println("Nice");
     }
+
+    @Override
+    public void onFirestoreQueryComplete(boolean b) {
+        // This method will be called when the Firestore query is complete.
+        // You can implement the logic you want here.
+        System.out.println("Nice");
+    }
 }

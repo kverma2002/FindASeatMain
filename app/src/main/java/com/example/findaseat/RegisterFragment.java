@@ -89,6 +89,7 @@ public class RegisterFragment extends Fragment {
                         TextUtils.isEmpty(lName) || TextUtils.isEmpty(affiliation) || TextUtils.isEmpty(email) ||
                         TextUtils.isEmpty(uscID)) {
                     Toast.makeText(getActivity(), "Please Fillout All Fields", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 Map<String, Object> user = new HashMap<>();

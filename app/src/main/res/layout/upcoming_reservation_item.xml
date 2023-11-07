@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="#DAF7A6">
 
     <TextView
         android:id="@+id/dateIdTextView"
@@ -47,16 +48,6 @@
         android:text="Date"
         android:gravity="center"
         android:padding="4dp"/>
-
-    <TextView
-        android:id="@+id/cancelled"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text=""
-        android:gravity="center"
-        android:padding="4dp"/>
-
-
 
 
 
