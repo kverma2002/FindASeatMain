@@ -8,6 +8,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -58,7 +61,7 @@ public class RegisterFragment extends Fragment {
     FirebaseFirestore db;
     FirebaseStorage storage;
 
-    Uri selectedImage;
+    Uri selectedImage ;
 
     ImageView imageView;
 
@@ -89,6 +92,8 @@ public class RegisterFragment extends Fragment {
         } else {
             // Handle the case where the resource is not found
         }
+
+        selectedImage = Uri.parse("android.resource://com.example.findaseat/" + R.drawable.usc_trojan);
 
 
         db = FirebaseFirestore.getInstance();
