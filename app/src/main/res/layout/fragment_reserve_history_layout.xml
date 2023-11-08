@@ -40,15 +40,7 @@
                 android:layout_weight="1"
                 android:text="Upcoming Reservation"
                 android:textStyle="bold"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/modify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="#DCE5EE"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:text="Modify" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancel"

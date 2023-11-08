@@ -113,8 +113,11 @@ public class ReserveHistoryFragment extends Fragment {
             }
         });
 
+
+
         return view;
     }
+
 
     private BoolResPair addReservationToTable(QueryDocumentSnapshot reservation) {
         if (reservation != null) {

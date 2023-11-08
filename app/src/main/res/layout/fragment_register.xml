@@ -26,17 +26,50 @@
         android:layout_gravity="center"
         android:gravity="center">
 
+
+
+
         <TextView
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:paddingTop="120dp"
+            android:paddingTop="35dp"
             android:text="Register"
             android:textColor="@color/white"
             android:textSize="35dp"
             android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageSelectorLinea"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="15dp">
+                <ImageView
+                    android:id="@+id/profileImageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/usc_trojan"
+                    android:background="@color/uscyellow"
+                    android:padding="5dp"/>
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="0dp"/>
+
+                <Button
+                    android:id="@+id/choosePictureButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Picture"
+                    android:padding="5dp"
+                    android:textColor="@color/uscyellow"/>
+
+            </LinearLayout>
+
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

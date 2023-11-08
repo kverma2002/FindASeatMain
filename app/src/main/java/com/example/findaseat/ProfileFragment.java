@@ -1,7 +1,9 @@
 package com.example.findaseat;
 
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -13,13 +15,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findaseat.Utils.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
 
 
 public class ProfileFragment extends Fragment {
@@ -27,6 +44,13 @@ public class ProfileFragment extends Fragment {
 
 
     TextView name, uscid, affiliation, email;
+    FirebaseFirestore db;
+
+    private DatabaseReference usersCollection;
+
+    StorageReference storageReference;
+
+    ImageView iv;
 
 
 
@@ -34,11 +58,17 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        db = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
+//        usersCollection = FirebaseFirestore.getInstance().getReference().child("user");
+
+
         User user = (User) getActivity().getApplicationContext();
         Log.d("UserDebug", "First Name: " + user.getFirst());
         Log.d("UserDebug", "Last Name: " + user.getLast());
         View view=inflater.inflate(R.layout.fragment_profile, container, false);
         System.out.println(user.getEmail());
+        iv = (ImageView) view.findViewById(R.id.profile_pic_upload);
         name = (TextView) view.findViewById(R.id.name);
         uscid = (TextView) view.findViewById(R.id.uscid);
         affiliation= (TextView) view.findViewById(R.id.affiliation);
@@ -49,6 +79,9 @@ public class ProfileFragment extends Fragment {
         uscid.setText("ID:" + user.getUscID());
         affiliation.setText(user.getAffiliation());
         this.setText(view);
+
+
+
         return view;
     }
 
@@ -63,7 +96,26 @@ public class ProfileFragment extends Fragment {
         email.setText(user.getEmail());
         uscid.setText("ID:" + user.getUscID());
         affiliation.setText(user.getAffiliation());
+
+        getUserImage();
+
+//        updateUserProfileImage(user.getEmail(), view);
     }
+
+    private void getUserImage() {
+        User user = (User) getActivity().getApplicationContext();
+        final StorageReference fileref = storageReference.child("images/" + user.getEmail());
+        fileref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(iv);
+            }
+        });
+
+
+    }
+
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

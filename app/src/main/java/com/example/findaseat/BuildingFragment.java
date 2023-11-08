@@ -1,5 +1,6 @@
 package com.example.findaseat;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,16 +12,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.findaseat.Utils.Building;
 import com.example.findaseat.Utils.Seat;
 import com.example.findaseat.Utils.SeatAdapter;
 import com.example.findaseat.Utils.User;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +43,9 @@ public class BuildingFragment extends Fragment {
 
 
     private FirebaseFirestore db;
+    StorageReference storageReference;
+
+    ImageView iv;
 
     private RecyclerView seatRecyclerView;
 
@@ -51,6 +61,7 @@ public class BuildingFragment extends Fragment {
 
     String id = "";
 
+    ProgressBar pB;
 
     private MutableLiveData<Building> buildingLiveData = new MutableLiveData<>();
 
@@ -60,10 +71,15 @@ public class BuildingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_building, container, false);
 
         loadingView = inflater.inflate(R.layout.loading_screen, container, false);
-
+        storageReference = FirebaseStorage.getInstance().getReference();
+        iv = view.findViewById(R.id.buildingPicture);
         contentView = view.findViewById(R.id.mainLayout);
 
+
         this.container = container;
+
+        pB = view.findViewById(R.id.progress);
+        pB.setVisibility(View.VISIBLE);
 
 
 
@@ -135,6 +151,8 @@ public class BuildingFragment extends Fragment {
         return view;
     }
 
+
+
     private void fetchBuildingDataFromFirestore(String buildingName) {
         System.out.println("Hello1");
         DocumentReference buildingRef = buildingsCollection.document(buildingName);
@@ -150,6 +168,7 @@ public class BuildingFragment extends Fragment {
 
                         // Update the LiveData with the retrieved building data.
                         buildingLiveData.setValue(specificBuilding);
+                        getUserImage();
                         showMainContent();
                     } else {
                         // Document with the specified ID does not exist (building name not found).
@@ -161,6 +180,20 @@ public class BuildingFragment extends Fragment {
                     Log.e("Firestore", "Error fetching building data", e);
                     showMainContent();
                 });
+    }
+
+    private void getUserImage() {
+        User user = (User) getActivity().getApplicationContext();
+        final StorageReference fileref = storageReference.child("buildings/" + this.id+".jpeg");
+        fileref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(iv);
+            }
+        });
+
+        pB.setVisibility(View.GONE);
+
     }
 
     private void showMainContent() {
