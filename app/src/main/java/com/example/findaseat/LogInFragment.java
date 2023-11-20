@@ -3,6 +3,8 @@ package com.example.findaseat;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -50,6 +52,7 @@ public class LogInFragment extends Fragment {
     ProgressBar progressBar;
     FirebaseFirestore db;
 
+    //private CountingIdlingResource idlingResource = new CountingIdlingResource("LoginChecker");
 
 
     @Override
@@ -104,9 +107,14 @@ public class LogInFragment extends Fragment {
                                             // Sign in success, update UI with the signed-in user's information
                                             Toast.makeText(getActivity(), "Success.", Toast.LENGTH_SHORT).show();
                                             replaceFragment(new ProfileFragment());
+//
+//                                            if (mIdlingResource != null) {
+//                                                mIdlingResource.setIsIdleState(true);
+//                                            }
                                         }
                                     };
 
+//
                                     fetchDataFromFirestore(callback, email, db);
 //                                    replaceFragment(new ProfileFragment());
                                 } else {
@@ -139,6 +147,7 @@ public class LogInFragment extends Fragment {
     }
 
     private void fetchDataFromFirestore(final FirestoreCallback callback, String email,FirebaseFirestore db) {
+
         User user = (User) getActivity().getApplicationContext();
         db.collection("users")
                 .whereEqualTo("email", email)
@@ -172,6 +181,20 @@ public class LogInFragment extends Fragment {
                         callback.onFirestoreQueryComplete();
                     }
                 });
+
     }
 
+//    @VisibleForTesting
+//    @NonNull
+//    public IdlingResource getIdlingResource() {
+//        if (mIdlingResource == null) {
+//            mIdlingResource = new FirestoreIdlingResource();
+//        }
+//        return mIdlingResource;
+//    }
+
+//    public CountingIdlingResource getIdlingResource() {
+//        return idlingResource;
+//    }
+//
 }
