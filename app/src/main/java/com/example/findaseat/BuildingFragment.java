@@ -23,6 +23,7 @@ import com.example.findaseat.Utils.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -153,6 +154,7 @@ public class BuildingFragment extends Fragment {
 
 
 
+    //Refactored getBuildingInfo() for testing
     private void fetchBuildingDataFromFirestore(String buildingName) {
         System.out.println("Hello1");
         DocumentReference buildingRef = buildingsCollection.document(buildingName);
@@ -160,13 +162,7 @@ public class BuildingFragment extends Fragment {
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         // Document with the specified ID (building name) exists.
-                        Building specificBuilding = documentSnapshot.toObject(Building.class);
-                        long l = documentSnapshot.getLong("open");
-                        specificBuilding.setOpen(l);
-                        this.id = (documentSnapshot.getId());
-                        System.out.println(specificBuilding.getOpenTime());
-
-                        // Update the LiveData with the retrieved building data.
+                        Building specificBuilding = getBuildingInfo(documentSnapshot);
                         buildingLiveData.setValue(specificBuilding);
                         getUserImage();
                         showMainContent();
@@ -180,6 +176,15 @@ public class BuildingFragment extends Fragment {
                     Log.e("Firestore", "Error fetching building data", e);
                     showMainContent();
                 });
+    }
+
+    Building getBuildingInfo(DocumentSnapshot documentSnapshot){
+        Building specificBuilding = documentSnapshot.toObject(Building.class);
+        long l = documentSnapshot.getLong("open");
+        specificBuilding.setOpen(l);
+        this.id = (documentSnapshot.getId());
+        System.out.println(specificBuilding.getOpenTime());
+        return specificBuilding;// Update the LiveData with the retrieved building data.
     }
 
     private void getUserImage() {

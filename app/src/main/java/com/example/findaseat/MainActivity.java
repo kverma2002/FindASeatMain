@@ -39,18 +39,8 @@ public class  MainActivity extends AppCompatActivity {
 
         binding.bottomNavigationView.setOnItemSelectedListener( item -> {
 
-            int page =  item.getItemId();
-            if (page == R.id.map) {
-                replaceFragment(new MapFragment());
-            } else if (page == R.id.profile) {
-                if (user.getLoggedIn()) {
-                    replaceFragment(new ProfileFragment());
-                }
-                else {
-                    replaceFragment(new LogInFragment());
-                }
-            }
-
+            Fragment fragment = getFragmentForItem(item.getItemId(),user);
+            replaceFragment(fragment);
             return true;
         });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -58,6 +48,19 @@ public class  MainActivity extends AppCompatActivity {
 //                .findFragmentById(R.id.map);
 //        mapFragment.getMapAsync(this);
 
+    }
+    //Refactored for Testing
+    public Fragment getFragmentForItem(int itemId, User user) {
+        if (itemId == R.id.map) {
+            return new MapFragment();
+        } else if (itemId == R.id.profile) {
+            if (user.getLoggedIn()) {
+                return new ProfileFragment();
+            } else {
+                return new LogInFragment();
+            }
+        }
+        return null; // this will not be triggered since the all items in the menu are valid
     }
 
     private void replaceFragment(Fragment fragment) {

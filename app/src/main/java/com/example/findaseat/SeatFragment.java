@@ -49,7 +49,7 @@ public class SeatFragment extends Fragment {
 
     Building building;
 
-    private Spinner startTimeSpinner;
+    Spinner startTimeSpinner;
     private Spinner durationSpinner;
 
     private FirebaseFirestore db;
@@ -280,11 +280,15 @@ public class SeatFragment extends Fragment {
         Log.e("Check", "Did we get here");
     }
 
-    private boolean checkOverlap(QueryDocumentSnapshot reservation,  Timestamp reservationStart, Timestamp reservationEnd) {
-        Log.e("Timecheck", reservation.getTimestamp("startTime").toString());
-        Log.e("Timecheck", reservation.getTimestamp("endTime").toString());
-        Log.e("Timecheck", reservationStart.toString());
-        Log.e("Timecheck", reservationEnd.toString());
+    //Refactored showToast() for testing
+    void showToast(String k){
+        Toast.makeText(getActivity(), k, Toast.LENGTH_SHORT).show();
+    }
+    boolean checkOverlap(QueryDocumentSnapshot reservation, Timestamp reservationStart, Timestamp reservationEnd) {
+//        Log.e("Timecheck", reservation.getTimestamp("startTime").toString());
+//        Log.e("Timecheck", reservation.getTimestamp("endTime").toString());
+//        Log.e("Timecheck", reservationStart.toString());
+//        Log.e("Timecheck", reservationEnd.toString());
         Timestamp sT = reservation.getTimestamp("startTime");
         Timestamp eT = reservation.getTimestamp("endTime");
 
@@ -292,10 +296,10 @@ public class SeatFragment extends Fragment {
         long existingEnd = eT.getSeconds();
         long newStart = reservationStart.getSeconds();
         long newEnd = reservationEnd.getSeconds();
-        Log.e("Timecheck", Long.toString(existingStart));
-        Log.e("Timecheck", Long.toString(existingEnd));
-        Log.e("Timecheck", Long.toString(newStart));
-        Log.e("Timecheck", Long.toString(newEnd));
+//        Log.e("Timecheck", Long.toString(existingStart));
+//        Log.e("Timecheck", Long.toString(existingEnd));
+//        Log.e("Timecheck", Long.toString(newStart));
+//        Log.e("Timecheck", Long.toString(newEnd));
         User user = (User) getActivity().getApplicationContext();
 
         String s = reservation.getString("user");
@@ -303,7 +307,7 @@ public class SeatFragment extends Fragment {
 
 
         if (s.equals(u)) {
-            Toast.makeText(getActivity(), "Multiple Reservations Made by User", Toast.LENGTH_SHORT).show();
+            showToast("Multiple Reservations Made by User");
             return true;
         }
 
@@ -312,25 +316,25 @@ public class SeatFragment extends Fragment {
         }
 
         if (existingStart == newStart || existingEnd == newEnd) {
-            Toast.makeText(getActivity(), "Overlapping Reservation", Toast.LENGTH_SHORT).show();
+            showToast("Overlapping Reservation");
             return true;
         }
         if (newStart < existingStart && newEnd > existingStart) {
-            Toast.makeText(getActivity(), "Overlapping Reservation", Toast.LENGTH_SHORT).show();
+            showToast("Overlapping Reservation");
             return true;
         }
         if (newStart > existingStart && newEnd < existingStart) {
-            Toast.makeText(getActivity(), "Overlapping Reservation", Toast.LENGTH_SHORT).show();
+            showToast("Overlapping Reservation");
             return true;
         }
         if (newStart > existingStart && newStart < existingEnd){
-            Toast.makeText(getActivity(), "Overlapping Reservation", Toast.LENGTH_SHORT).show();
+            showToast("Overlapping Reservation");
             return true;
         }
         return false;
     }
 
-    private Timestamp getTime(int minutes) {
+    Timestamp getTime(int minutes) {
         Timestamp firestoreTimestamp = Timestamp.now(); // Replace with the selected date
         String selectedStartTime = startTimeSpinner.getSelectedItem().toString(); // Replace with the selected start time
 //        System.out.println(selectedStartTime);
@@ -355,7 +359,7 @@ public class SeatFragment extends Fragment {
             // Create a Firestore Timestamp from the Date
             Timestamp timestamp = new Timestamp(reservationDate);
 
-            Log.d("TimeStartCreation", timestamp.toDate().toString());
+//            Log.d("TimeStartCreation", timestamp.toDate().toString());
             return timestamp;
 
         } catch (Exception e) {
@@ -366,7 +370,7 @@ public class SeatFragment extends Fragment {
 
     }
 
-    private Timestamp close(String time) {
+    Timestamp close(String time) {
         System.out.println(time);
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.US); // 24-hour format
         try {
@@ -386,14 +390,14 @@ public class SeatFragment extends Fragment {
 
             // Create a Firestore Timestamp from the Date
             Timestamp timestamp = new Timestamp(reservationDate);
-            Log.d("CloseCreation", timestamp.toDate().toString());
+//            Log.d("CloseCreation", timestamp.toDate().toString());
             return timestamp;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    private Reservation createReservation(QueryDocumentSnapshot reservation) {
+    Reservation createReservation(QueryDocumentSnapshot reservation) {
         String building = reservation.getString("building");
         String room = reservation.getString("room");
 

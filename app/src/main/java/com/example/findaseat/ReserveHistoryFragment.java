@@ -119,7 +119,7 @@ public class ReserveHistoryFragment extends Fragment {
     }
 
 
-    private BoolResPair addReservationToTable(QueryDocumentSnapshot reservation) {
+    BoolResPair addReservationToTable(QueryDocumentSnapshot reservation) {
         if (reservation != null) {
             String building = reservation.getString("building");
             String room = reservation.getString("room");
