@@ -40,11 +40,12 @@ public class BuildingFragmentLoggedIn {
         onView(withId(R.id.password)).perform(typeText("123456"),closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
         try {
-            Thread.sleep(3000); // Wait for 1 seconds
+            Thread.sleep(3000); // Wait for 3 seconds
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
 
     @Test
     public void clickBuilding() throws UiObjectNotFoundException {

@@ -32,11 +32,12 @@ public class ReserveHistoryPageTest {
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
+    //Use the testor account for reserve history test, which only has one reservation in history
     @Before
     public void setup(){
         onView(ViewMatchers.withId(R.id.profile))
                 .perform(click());
-        onView(withId(R.id.email)).perform(typeText("lihongyi@usc.edu"));
+        onView(withId(R.id.email)).perform(typeText("testhistory@usc.edu"));
         onView(withId(R.id.password)).perform(typeText("123456"),closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
         try {
@@ -63,34 +64,35 @@ public class ReserveHistoryPageTest {
         onView(withId(R.id.pastInfo))
                 .perform(RecyclerViewActions.scrollToPosition(0));
 
+        //This is one of the past reservation in this user's account
         onView(withId(R.id.pastInfo))
-                .check(matches(atPosition(0, allOf(
-                        hasDescendant(withText("Epstein Plaza")),
-                        hasDescendant(withText("North Plaza Area")),
-                        hasDescendant(withText("11-19"))))));
+                .check(matches(allOf(
+                        hasDescendant(withText("Doheny")),
+                        hasDescendant(withText("Grand Study Hall")),
+                        hasDescendant(withText("11-20")))));
 
 
         //check bottom navigation bar
         bottomNavigationViewIsDisplayed();
     }
 
-    public static Matcher<View> atPosition(final int position, final Matcher<View> itemMatcher) {
-        return new BoundedMatcher<View, RecyclerView>(RecyclerView.class) {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("has item at position " + position + ": ");
-                itemMatcher.describeTo(description);
-            }
-            @Override
-            protected boolean matchesSafely(final RecyclerView view) {
-                RecyclerView.ViewHolder viewHolder = view.findViewHolderForAdapterPosition(position);
-                if (viewHolder == null) {
-                    return false;
-                }
-                return itemMatcher.matches(viewHolder.itemView);
-            }
-        };
-    }
+//    public static Matcher<View> atPosition(final int position, final Matcher<View> itemMatcher) {
+//        return new BoundedMatcher<View, RecyclerView>(RecyclerView.class) {
+//            @Override
+//            public void describeTo(Description description) {
+//                description.appendText("has item at position " + position + ": ");
+//                itemMatcher.describeTo(description);
+//            }
+//            @Override
+//            protected boolean matchesSafely(final RecyclerView view) {
+//                RecyclerView.ViewHolder viewHolder = view.findViewHolderForAdapterPosition(position);
+//                if (viewHolder == null) {
+//                    return false;
+//                }
+//                return itemMatcher.matches(viewHolder.itemView);
+//            }
+//        };
+//    }
 
     //check if the bottom menu is correctly displayed in the map homepage
     public void bottomNavigationViewIsDisplayed() {

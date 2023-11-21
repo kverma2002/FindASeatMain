@@ -28,8 +28,8 @@ public class ProfileTest {
     public void fromLoginToProfile() {
         onView(ViewMatchers.withId(R.id.profile))
                 .perform(click());
-        onView(withId(R.id.email)).perform(typeText("tswift@usc.edu"));
-        onView(withId(R.id.password)).perform(typeText("1234567"),closeSoftKeyboard());
+        onView(withId(R.id.email)).perform(typeText("lihongyi@usc.edu"));
+        onView(withId(R.id.password)).perform(typeText("123456"),closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
         try {
             Thread.sleep(4000); // Sleep for 4 second
@@ -37,10 +37,10 @@ public class ProfileTest {
             e.printStackTrace();
         }
         //UI on the profile page is displayed, and the logged in student's info is shown
-        onView(withId(R.id.name)).check(matches(withText("Taylor Swift")));
+        onView(withId(R.id.name)).check(matches(withText("Hongyi Li")));
         onView(withId(R.id.em)).check(matches(isDisplayed()));
-        onView(withId(R.id.uscid)).check(matches(withText("ID:1234567898")));
-        onView(withId(R.id.affiliation)).check(matches(withText("student")));
+        onView(withId(R.id.uscid)).check(matches(withText("ID:1555971729")));
+        onView(withId(R.id.affiliation)).check(matches(withText("undergrad")));
         onView(withId(R.id.reserveHistory)).check(matches(isDisplayed()));
 
 
@@ -52,7 +52,4 @@ public class ProfileTest {
         onView(withId(R.id.profile)).check(matches(isDisplayed()));
         onView(withId(R.id.map)).check(matches(isDisplayed()));
     }
-
-
-
 }
