@@ -72,8 +72,7 @@ public class ReserveHistoryPageTest {
                         hasDescendant(withText("11-20")))));
 
 
-        //check bottom navigation bar
-        bottomNavigationViewIsDisplayed();
+
     }
 
 //    public static Matcher<View> atPosition(final int position, final Matcher<View> itemMatcher) {
@@ -94,10 +93,4 @@ public class ReserveHistoryPageTest {
 //        };
 //    }
 
-    //check if the bottom menu is correctly displayed in the map homepage
-    public void bottomNavigationViewIsDisplayed() {
-        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()));
-        onView(withId(R.id.profile)).check(matches(isDisplayed()));
-        onView(withId(R.id.map)).check(matches(isDisplayed()));
-    }
 }

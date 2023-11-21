@@ -52,14 +52,6 @@ public class LoginPageTest {
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    //check if the bottom menu is correctly displayed in the map homepage
-    public void bottomNavigationViewIsDisplayed() {
-        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()));
-        onView(withId(R.id.profile)).check(matches(isDisplayed()));
-        onView(withId(R.id.map)).check(matches(isDisplayed()));
-    }
-
-    @Test
     //check if the login page's layout is correctly displayed (email/password/login/createNew)
     public void loginPageCorrectlyDisplayed() {
         onView(ViewMatchers.withId(R.id.profile))

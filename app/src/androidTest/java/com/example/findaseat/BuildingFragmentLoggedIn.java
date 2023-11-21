@@ -47,13 +47,7 @@ public class BuildingFragmentLoggedIn {
     }
 
 
-    @Test
-    //check if the bottom menu is correctly displayed in the map homepage
-    public void bottomNavigationViewIsDisplayed() {
-        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()));
-        onView(withId(R.id.profile)).check(matches(isDisplayed()));
-        onView(withId(R.id.map)).check(matches(isDisplayed()));
-    }
+
     @Test
     public void clickBuilding() throws UiObjectNotFoundException {
         onView(ViewMatchers.withId(R.id.map))
@@ -81,5 +75,12 @@ public class BuildingFragmentLoggedIn {
         onView(withId(R.id.roomSeat)).check(matches(withText("Room: Grand Study Hall")));
         onView(withId(R.id.seatNumberSeat)).check(matches(withText("Seat Number 1")));
         onView(withId(R.id.descriptionSeat)).check(matches(withText("Floor 1. Seat on table in back left in Dohney's large study hall.")));
+        bottomNavigationViewIsDisplayed();
+    }
+    //To check the bottom bar on seat page
+    public void bottomNavigationViewIsDisplayed() {
+        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()));
+        onView(withId(R.id.profile)).check(matches(isDisplayed()));
+        onView(withId(R.id.map)).check(matches(isDisplayed()));
     }
 }

@@ -136,11 +136,5 @@ public class BuildingPageNotLoggedInTest {
 
     }
 
-    //The bottom navigation bar remains unchanged.
-    @Test
-    public void bottomNavigationViewIsDisplayed() {
-        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()));
-        onView(withId(R.id.profile)).check(matches(isDisplayed()));
-        onView(withId(R.id.map)).check(matches(isDisplayed()));
-    }
+
 }

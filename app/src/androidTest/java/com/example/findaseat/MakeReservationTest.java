@@ -103,8 +103,31 @@ public class MakeReservationTest {
         //Checking if the reservation we just created appear in the recycler view
         onView(withId(R.id.currentReservation))
                 .check(matches(allOf(hasDescendant(withText("21:30")),hasDescendant(withText("22:00")))));
-        checkInHistory();
 
+        repeatReservation();
+
+
+    }
+    //When user try to make another reservation with an active one, reserve will alert error
+    // and the currentReservation list will not be updated
+    public void repeatReservation(){
+        onView(withId(R.id.startTimeSpinner)).perform(click());
+        onData(anything()).atPosition(25).perform(click());
+        onView(withId(R.id.startTimeSpinner)).check(matches(withSpinnerText(containsString("20:30"))));//pick 20:30
+        onView(withId(R.id.durationSpinner)).perform(click());
+        onData(anything()).atPosition(0).perform(click());
+        onView(withId(R.id.durationSpinner)).check(matches(withSpinnerText(containsString("00:30"))));//pick 30 minutes
+
+        onView(withId(R.id.reserve)).perform(click());
+        try {
+            Thread.sleep(3000); // Wait for 3 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //The number of current Reservation should not change (the 1 is the reservation created in makeReservation()
+        onView(withId(R.id.currentReservation)).check(matches(withItemCount(1)));
+        checkInHistory();
     }
 
     //check that the created reservation will show up in history page

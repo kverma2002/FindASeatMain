@@ -23,7 +23,7 @@ public class InvalidRegisterTest {
 
     //We miss some fields when registering for new account. The registration should fail and we stay on this page.
     @Test
-    public void RegisterTest(){
+    public void InvalidRegisterTest(){
         onView(ViewMatchers.withId(R.id.profile))
                 .perform(click());
         onView(ViewMatchers.withId(R.id.createNew))
