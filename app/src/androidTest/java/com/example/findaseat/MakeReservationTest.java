@@ -72,7 +72,7 @@ public class MakeReservationTest {
         }
     }
 
-    //Note that this test is creating a reservation from 20:00 to 20:30 at the first seat in Leavey. If current time is after 20:00,
+    //Note that this test is creating a reservation from 21:30 to 22:00 at the first seat in Leavey. If current time is after 21:30,
     //or there is overlapping reservation existing, then the reservation won't be created, and the test will return error.
     @Test
     public void makeReservation(){
@@ -90,7 +90,7 @@ public class MakeReservationTest {
         onView(withId(R.id.durationSpinner)).check(matches(withSpinnerText(containsString("01:00"))));
         onView(withId(R.id.durationSpinner)).perform(click());
         onData(anything()).atPosition(0).perform(click());
-        onView(withId(R.id.durationSpinner)).check(matches(withSpinnerText(containsString("00:30"))));
+        onView(withId(R.id.durationSpinner)).check(matches(withSpinnerText(containsString("00:30"))));//pick 30 minutes
 
 
         onView(withId(R.id.reserve)).perform(click());
@@ -107,6 +107,7 @@ public class MakeReservationTest {
 
     }
 
+    //check that the created reservation will show up in history page
     public void checkInHistory(){
         onView(ViewMatchers.withId(R.id.profile))
                 .perform(click());
@@ -127,6 +128,7 @@ public class MakeReservationTest {
         cancel();
     }
 
+    //Click cancel and click "No" or "Yes" on the Alert dialog, the upcoming list and past list will be updated accordingly
     public void cancel(){
         //Should do nothing here since we choose no
         onView(ViewMatchers.withId(R.id.cancel)).perform(click());

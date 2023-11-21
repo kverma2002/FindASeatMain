@@ -43,7 +43,6 @@ public class ProfileTest {
         onView(withId(R.id.affiliation)).check(matches(withText("undergrad")));
         onView(withId(R.id.reserveHistory)).check(matches(isDisplayed()));
 
-
         bottomNavigationViewIsDisplayed();
     }
     //check if the bottom menu is correctly displayed in the profile page

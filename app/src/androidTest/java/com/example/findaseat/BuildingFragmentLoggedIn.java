@@ -48,6 +48,13 @@ public class BuildingFragmentLoggedIn {
 
 
     @Test
+    //check if the bottom menu is correctly displayed in the map homepage
+    public void bottomNavigationViewIsDisplayed() {
+        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()));
+        onView(withId(R.id.profile)).check(matches(isDisplayed()));
+        onView(withId(R.id.map)).check(matches(isDisplayed()));
+    }
+    @Test
     public void clickBuilding() throws UiObjectNotFoundException {
         onView(ViewMatchers.withId(R.id.map))
                 .perform(click());
